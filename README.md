@@ -1,2 +1,2 @@
 # Omnigage SDK Examples
-Collection of examples using Omnigage SDKs.
+Collection of samples using Omnigage SDKs. Read me files in examples for additional detail.
