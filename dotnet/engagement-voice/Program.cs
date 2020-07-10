@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Omnigage;
 using Omnigage.Resource;
+using Omnigage.Runtime;
 
 namespace engagement_voice
 {
@@ -37,12 +38,12 @@ namespace engagement_voice
             // Initialize SDK
             OmnigageClient.Init(tokenKey, tokenSecret);
 
-            EngagementResource engagement = new EngagementResource();
+            var engagement = new EngagementResource();
             engagement.Name = "Example Voice Blast";
             engagement.Direction = "outbound";
             await engagement.Create();
 
-            ActivityResource activity = new ActivityResource();
+            var activity = new ActivityResource();
             activity.Name = "Voice Blast";
             activity.Kind = ActivityKind.Voice;
             activity.Engagement = engagement;
@@ -52,32 +53,32 @@ namespace engagement_voice
             };
             await activity.Create();
 
-            UploadResource upload1 = new UploadResource
+            var upload1 = new UploadResource
             {
                 FilePath = audioFilePath1
             };
             await upload1.Create();
 
-            UploadResource upload2 = new UploadResource
+            var upload2 = new UploadResource
             {
                 FilePath = audioFilePath2
             };
             await upload2.Create();
 
-            VoiceTemplateResource humanRecording = new VoiceTemplateResource();
+            var humanRecording = new VoiceTemplateResource();
             humanRecording.Name = "Human Recording";
             humanRecording.Kind = "audio";
             humanRecording.Upload = upload1;
             await humanRecording.Create();
 
-            VoiceTemplateResource machineRecording = new VoiceTemplateResource();
+            var machineRecording = new VoiceTemplateResource();
             machineRecording.Name = "Machine Recording";
             machineRecording.Kind = "audio";
             machineRecording.Upload = upload2;
             await machineRecording.Create();
 
             // Define human trigger
-            TriggerResource triggerHumanInstance = new TriggerResource();
+            var triggerHumanInstance = new TriggerResource();
             triggerHumanInstance.Kind = TriggerKind.Play;
             triggerHumanInstance.OnEvent = TriggerOnEvent.VoiceHuman;
             triggerHumanInstance.Activity = activity;
@@ -85,14 +86,14 @@ namespace engagement_voice
             await triggerHumanInstance.Create();
 
             // Define machine trigger
-            TriggerResource triggerMachineInstance = new TriggerResource();
+            var triggerMachineInstance = new TriggerResource();
             triggerMachineInstance.Kind = TriggerKind.Play;
             triggerMachineInstance.OnEvent = TriggerOnEvent.VoiceMachine;
             triggerMachineInstance.Activity = activity;
             triggerMachineInstance.VoiceTemplate = machineRecording;
             await triggerMachineInstance.Create();
 
-            EnvelopeResource envelope = new EnvelopeResource();
+            var envelope = new EnvelopeResource();
             envelope.PhoneNumber = phoneNumber;
             envelope.Engagement = engagement;
             envelope.Meta = new Dictionary<string, string>
@@ -106,7 +107,7 @@ namespace engagement_voice
             envelopes.Add(envelope);
 
             // Populate engagement queue
-            await OmnigageClient.PostBulkRequest("envelopes", EnvelopeResource.SerializeBulk(envelopes));
+            await Client.PostBulkRequest("envelopes", EnvelopeResource.SerializeBulk(envelopes));
 
             // Schedule engagement for processing
             engagement.Status = "scheduled";
