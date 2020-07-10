@@ -78,8 +78,8 @@ namespace engagement_voice
 
             // Define human trigger
             TriggerResource triggerHumanInstance = new TriggerResource();
-            triggerHumanInstance.Kind = "play";
-            triggerHumanInstance.OnEvent = "voice-human";
+            triggerHumanInstance.Kind = TriggerKind.Play;
+            triggerHumanInstance.OnEvent = TriggerOnEvent.VoiceHuman;
             triggerHumanInstance.Activity = activity;
             triggerHumanInstance.VoiceTemplate = humanRecording;
             await triggerHumanInstance.Create();
