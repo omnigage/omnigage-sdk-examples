@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "engagement-voice", "engagement-voice.csproj", "{F99D535F-1C37-460D-A3B1-D818D524938D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F99D535F-1C37-460D-A3B1-D818D524938D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F99D535F-1C37-460D-A3B1-D818D524938D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F99D535F-1C37-460D-A3B1-D818D524938D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F99D535F-1C37-460D-A3B1-D818D524938D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
