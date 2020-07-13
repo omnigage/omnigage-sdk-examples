@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Omnigage;
 using Omnigage.Resource;
-using Omnigage.Runtime;
 
 namespace send_sms
 {
